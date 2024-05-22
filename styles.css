@@ -1,0 +1,130 @@
+* {
+  user-select: none;
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  color: #333;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  padding: 5px 15px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s,
+    box-shadow 0.3s;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tag:hover {
+  border-color: #6200ea;
+  color: #6200ea;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tag:hover .heart {
+  color: #6200ea;
+}
+
+.heart-checkbox {
+  display: none;
+}
+
+.heart {
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  font-size: 1.2em;
+  position: relative;
+}
+
+.heart::before,
+.heart::after {
+  content: "❤";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.heart-checkbox:checked + .heart {
+  color: #fff;
+  transform: scale(1.1);
+  animation: shake 0.5s;
+}
+
+.heart-checkbox:checked + .heart::before {
+  color: currentColor;
+  z-index: -1;
+  transform: scale(1.5);
+}
+
+.heart-checkbox:checked + .heart::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: currentColor;
+  z-index: -1;
+  clip-path: polygon(50% 0%, 0% 38%, 18% 100%, 82% 100%, 100% 38%);
+}
+
+#heart1:checked + .heart {
+  color: #ff6b6b;
+}
+
+#heart2:checked + .heart {
+  color: #1dd1a1;
+}
+
+#heart3:checked + .heart {
+  color: #54a0ff;
+}
+
+#heart4:checked + .heart {
+  color: #f368e0;
+}
+
+/* Additional styling for text selection */
+.tag-text {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
